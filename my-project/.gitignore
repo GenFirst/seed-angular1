@@ -1,3 +1,6 @@
+# InteliJ IDE files
 .idea/
+
+# project files
 node_modules/
 bower_components/
