@@ -1,0 +1,17 @@
+{
+  "name": "my-project",
+  "version": "0.0.1",
+  "description": "my-project description",
+  "homepage": "www.my-project.com",
+  "keywords": [
+    "angular",
+    "seed"
+  ],
+  "license": "MIT",
+  "authors": [
+    "Vladimir Dimitrieski",
+    "Ivan Vasiljević"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
