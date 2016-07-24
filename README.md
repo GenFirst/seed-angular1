@@ -1,6 +1,8 @@
 # seed-angular1
 Seed project for AngularJS 1.X uses ```npm``` and ```bower``` as package management tools and ```gulp``` as a build tool. 
 
+Included packages comprise: angular-ui-router, angular-bootstrap, angular-animate.
+
 #### Requirements
 In order to use gulp please install gulp-cli globally
 ```npm install --global gulp-cli```
@@ -8,8 +10,9 @@ In order to use gulp please install gulp-cli globally
 #### Usage
 Change the project name (*my-project*) in the following places:
  * root directory
- * bower.json (change other info also)
- * package.json (change other info also)
+ * ```bower.json``` (change other info also)
+ * ```package.json``` (change other info also)
+ * ng-app name in the html tag of ```index.html```
  
 Install initial node modules:
 ```npm install```
