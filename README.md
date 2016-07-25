@@ -8,8 +8,6 @@ In order to use gulp gulp-cli needs to be installed globally
 ```npm install --global gulp-cli```
 
 #### Configuration and usage
-
-
 Change the project name (*my-project*) in the following places:
  * root directory
  * ```bower.json``` (change other info also)
@@ -31,6 +29,8 @@ Several basic gulp tasks are implemented. They should be adapted to suit a speci
  * *build-dev* - builds the application for the development. It creates source maps for both minimized js and css files.
  * *build-prod* - builds the application for the production. It does not create source maps for minimized js and css files.
  * *default* - default task that runs *build-dev* immediately.
+
+To add constants that depend on build profiles, change ```app/config.json```.
 
 #### Defaults
 Default ```.gitignore``` file is set up for ignoring:
