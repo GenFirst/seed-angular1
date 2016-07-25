@@ -15,6 +15,7 @@ var rename = require('gulp-rename');
 var inject = require('gulp-inject');
 var bowerFiles = require('main-bower-files');
 var cleanCSS = require('gulp-clean-css');
+var gulpNgConfig = require('gulp-ng-config');
 
 //////////////////////////////////
 // utility tasks
@@ -38,6 +39,46 @@ gulp.task('lint', function () {
 //////////////////////////////////
 // build tasks
 //////////////////////////////////
+
+//switch configuration based on the build profile
+gulp.task('build-config-dev', function () {
+  return gulp.src('./app/config.json')
+    .pipe(gulpNgConfig('MainModule.configuration', {
+      environment: 'development'
+    }))
+    .pipe(gulp.dest('./build/scripts'))
+});
+
+//switch configuration based on the build profile
+gulp.task('build-config-prod', function () {
+  return gulp.src('./app/config.json')
+    .pipe(gulpNgConfig('MainModule.configuration', {
+      environment: 'production'
+    }))
+    .pipe(gulp.dest('./build/scripts'))
+});
+
+//create template cache from html files
+//it creates 'templates' module and adds the cache to it
+//keys are formed as component_name/file_name.html
+gulp.task('build-template-cache', function () {
+  return gulp.src("./app/**/*.html")
+    .pipe(minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe(ngHtml2Js({
+      moduleName: 'MainModule.templates',
+      rename: function (templateUrl) {
+        var url = templateUrl.substring(templateUrl.indexOf('/') + 1);
+        return url;
+      }
+    }))
+    .pipe(concat("partials.min.js"))
+    .pipe(gulp.dest("./build/scripts"));
+});
+
 //build css from sass and compress
 gulp.task('build-sass', function () {
   return gulp.src('./assets/sass/**/*.scss')
@@ -89,24 +130,6 @@ gulp.task('build-bower', function () {
     .pipe(gulp.dest('dist/bower_components/'));
 });
 
-//create template cache
-gulp.task('build-template-cache', function () {
-  return gulp.src("./app/**/*.html")
-    .pipe(minifyHtml({
-      empty: true,
-      spare: true,
-      quotes: true
-    }))
-    .pipe(ngHtml2Js({
-      moduleName: 'templates',
-      rename: function (templateUrl) {
-        var url = templateUrl.substring(templateUrl.indexOf('/') + 1);
-        return url;
-      }
-    }))
-    .pipe(concat("partials.min.js"))
-    .pipe(gulp.dest("./build/scripts"));
-});
 
 //build js files for development
 gulp.task('build-js-dev', function () {
@@ -124,13 +147,14 @@ gulp.task('build-js-dev', function () {
 //build js files for production
 gulp.task('build-js-prod', function () {
   var concatName = packageJson.name + '-' + packageJson.version + '.js';
-  return gulp.src(['./app/**/*.js', './build/js/*.js'])
+  return gulp.src(['./app/**/*.js', './build/scripts/*.js'])
     .pipe(concat(concatName))
     .pipe(gulp.dest('build/scripts'))
     .pipe(uglify())
     .pipe(rename({extname: '.min.js'}))
     .pipe(gulp.dest('dist/scripts'));
 });
+
 
 //////////////////////////////////
 // watch tasks
@@ -160,15 +184,15 @@ gulp.task('watch-des', function () {
 //////////////////////////////////
 //build app for development
 gulp.task('build-dev', function (callback) {
-  runSequence('clean', 'lint', 'build-template-cache',
-    ['build-assets', 'build-sass', 'build-js-dev', 'build-bower'],
+  runSequence('clean', 'lint', ['build-template-cache', 'build-config-dev'],
+    ['build-assets', 'build-bower', 'build-sass', 'build-js-dev'],
     'build-index', callback);
 });
 
 //build app for production
 gulp.task('build-prod', function (callback) {
-  runSequence('clean', 'lint', 'build-template-cache',
-    ['build-assets', 'build-sass-prod', 'build-js-prod', 'build-bower'],
+  runSequence('clean', 'lint', ['build-template-cache', 'build-config-prod'],
+    ['build-assets', 'build-bower', 'build-sass-prod', 'build-js-prod'],
     'build-index', callback);
 });
 
