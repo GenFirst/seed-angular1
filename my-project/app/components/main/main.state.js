@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('MainModule')
-    .service('srvMain', function () {
+  .service('srvMain', function () {
 
-        var getName = function () {
-            return 'John';
-        };
+    var getName = function () {
+      return 'John';
+    };
 
-        return {
-            getName : getName
-        };
-    });
+    return {
+      getName: getName
+    };
+  });
