@@ -139,19 +139,20 @@ gulp.task('build-js-prod', function () {
 gulp.task('watch', function () {
     return gulp.watch([
         './app/**/*.js',
-        './app/**/*.html'
-    ], ['lint']);
+        './app/**/*.html',
+        'index.html'
+    ], ['build-dev']);
 });
 
 //watch changes in the design domain
 gulp.task('watch-des', function () {
     return gulp.watch([
         './app/**/*.html',
-        './assets/css/*.less',
-        './assets/css/*.scss',
-        './assets/css/*.css',
+        './assets/sass/*.less',
+        './assets/sass/*.scss',
+        './assets/sass/*.css',
         './assets/img/*.*'
-    ], ['lint']);
+    ], ['build-dev']);
 });
 
 //////////////////////////////////

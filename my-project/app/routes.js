@@ -2,19 +2,22 @@
 
 angular.module('MainModule')
 //add configuration
-    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-        function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    .config(['$stateProvider', '$urlRouterProvider',
+        function ($stateProvider, $urlRouterProvider) {
 
             // For any unmatched url, redirect to /state1
-            $urlRouterProvider.otherwise('/main');
-
-            //$locationProvider.html5Mode(true);
+            $urlRouterProvider.otherwise('/index');
 
             //set up the states
             $stateProvider
-                .state('main', {
-                    url: '/main',
-                    template: '<h1>AAAAA</h1>',
-                    controller: 'ctrlMain'
+                .state('index', {
+                    url: '/index',
+                    views: {
+                       'content@' : {
+                           templateUrl: 'main/main.html',
+                           controller:'ctrlMain'
+                       }
+                    }
                 });
+
         }]);
