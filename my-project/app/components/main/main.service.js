@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('MainModule')
-  .service('srvMain', ['SERVER', function (serverPath) {
+  .service('srvMain', ['REST_BASE_URL', function (restUrl) {
 
     var getName = function () {
-      console.log(serverPath); //injected constant from configuration module, depends on a build environment
+      console.log(restUrl); //injected constant from configuration module, depends on a build environment
       return 'John';
     };
 
