@@ -104,6 +104,13 @@ gulp.task('build-sass-prod', function () {
 
 //copy index.html to dist directory
 gulp.task('build-index', function () {
+
+  console.log(bowerFiles({
+    paths: {
+      bowerDirectory: 'dist/bower_components'
+    }
+  }));
+
   return gulp.src(['./index.html'])
     .pipe(gulp.dest('dist/'))
     .pipe(inject(gulp.src(['./scripts/*.js', './stylesheets/*.css'], {

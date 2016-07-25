@@ -1,3 +1,5 @@
 <div>
-    <h1>Hello {{username}}!!!</h1>
+    <h1>Hello {{form.username}}!!!</h1>
+    <label>Input username: </label><input type="text" ng-model="form.username">
+    <button type="button" class="btn btn-primary" ng-click="reset()">Hit me</button>
 </div>
