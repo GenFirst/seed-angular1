@@ -15,5 +15,13 @@
     "angular-animate": "^1.5.8",
     "bootstrap": "^3.3.6"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "overrides": {
+    "bootstrap": {
+      "main":[
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
 }

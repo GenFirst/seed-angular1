@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MainModule', ['templates', 'ui.router', 'ngAnimate', 'ui.bootstrap'])
+angular.module('MainModule', ['MainModule.configuration', 'MainModule.templates', 'ui.router', 'ngAnimate', 'ui.bootstrap'])
 //add configuration
 //root config
   .controller('AppCtrl', ['$rootScope', '$scope', '$templateCache', function ($rootScope, $scope, $templateCache) {
@@ -8,5 +8,4 @@ angular.module('MainModule', ['templates', 'ui.router', 'ngAnimate', 'ui.bootstr
     // $rootScope.serverPath = configuration.REST_BASE_URL;
     // $rootScope.clientPath = configuration.CLIENT_BASE_URL;
     $scope.pageTitle = 'Main page';
-
   }]);
