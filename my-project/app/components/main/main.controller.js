@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('MainModule')
-  .controller('ctrlMain', ['$scope', 'srvMain', function ($scope, srvMain) {
+  .controller('mainController', ['$scope', 'srvMain', function ($scope, srvMain) {
     $scope.form = {
       username: srvMain.getName()
     };
@@ -11,4 +11,3 @@ angular.module('MainModule')
     };
 
   }]);
-
