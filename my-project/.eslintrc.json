@@ -1,8 +1,20 @@
 {
+  "env": {
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "angular"],
+  "globals": {
+    "angular": true,
+    "google": true
+  },
   "rules": {
     "curly": "error",
     "quotes": ["error", "single"],
     "strict": ["error", "global"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "angular/di": [2,"array"],
+    "angular/controller-as": 0,
+    "angular/controller-name": [2,"[a-zA-Z0-9]*Controller"],
+    "angular/no-service-method": 0
   }
 }

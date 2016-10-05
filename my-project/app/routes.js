@@ -15,7 +15,7 @@ angular.module('MainModule')
           views: {
             'content@': {
               templateUrl: 'main/main.html',
-              controller: 'ctrlMain'
+              controller: 'mainController'
             }
           }
         });
